@@ -14,14 +14,49 @@ function registerServiceWorker() {
 }
 
 function fillSelectItems() {
-    
-    const ulListContainer = document.querySelectorAll('ul');
 
-    // document.createElement('li').
+    // get the ul Element
+    const ulFromListContainer = document.getElementById('ulFrom');
+    const ulToListContainer = document.getElementById('ulTo');
+
+    const ulListContainer = document.getElementsByTagName('ul');
+
     getAllCountries().then(resp => {
         return resp;
     }).then(data => {
-        console.dir(data.results);
+        // console.dir(Object.keys(data.results));
+        for (const element of Object.keys(data.results)) {
+            // create li Element
+            const liElem = document.createElement('li');
+            // Add the flex Display
+            liElem.classList.add('item');
+            liElem.classList.add('mdl-menu__item'); 
+
+            // Create Image Element
+            const img = document.createElement('img');
+
+            // Create Country Text Element
+            const country = document.createElement('p');
+
+            // Create Currency Text ELement
+            const currency = document.createElement('p');
+
+            img.src = `http://www.countryflags.io/${element}/flat/64.png`;
+            country.innerHTML = data.results[element].name;
+            currency.innerHTML = data.results[element].currencyId;
+            liElem.appendChild(img);
+            liElem.appendChild(country);
+            liElem.appendChild(currency);
+            // liElem.innerHTML = `${data.results[element].name} - ${data.results[element].currencyId}`;
+
+            const clonedNode = liElem.cloneNode(true);
+            ulFromListContainer.appendChild(liElem);
+            ulToListContainer.appendChild(clonedNode);
+            // for(let i = 0; i < ulListContainer.length; i++) {
+            //     ulListContainer.item(i).appendChild(liElem);
+            // }
+            
+        }
     })
 }
 function getAllCountries() {

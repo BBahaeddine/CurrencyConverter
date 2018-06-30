@@ -6,6 +6,7 @@ var connect = require('gulp-connect');
 var uglify = require('gulp-uglify');
 var livereload = require('gulp-livereload');
 var gulpsync = require('gulp-sync')(gulp);
+const gzip = require('gulp-gzip');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var babelify = require('babelify');
@@ -45,14 +46,14 @@ gulp.task('js', function () {
         .pipe(livereload())
 })
 
-gulp.task('sw', function() {
+gulp.task('sw', function () {
     gulp.src('public/serviceWorker.js')
-    .pipe(babel({
-        presets: ['env']
-    }))
-    .pipe(browserify())
-    .pipe(uglify())
-    .pipe(gulp.dest('./build/public'))
+        .pipe(babel({
+            presets: ['env']
+        }))
+        .pipe(browserify())
+        .pipe(uglify())
+        .pipe(gulp.dest('./build/public'))
 })
 
 gulp.task('html', function () {
@@ -61,23 +62,23 @@ gulp.task('html', function () {
         .pipe(livereload())
 })
 
-gulp.task('css', function() {
+gulp.task('css', function () {
     gulp.src('public/css/*.css')
-    .pipe(gulp.dest('./build/public/css'))
-    .pipe(livereload())
+        .pipe(gulp.dest('./build/public/css'))
+        .pipe(livereload())
 })
 
-gulp.task('assets:js', function() {
+gulp.task('assets:js', function () {
     gulp.src('node_modules/getmdl-select/getmdl-select.min.js')
-    .pipe(gulp.dest('./build/public/assets/js'))
+        .pipe(gulp.dest('./build/public/assets/js'))
 })
 
-gulp.task('assets:css', function() {
+gulp.task('assets:css', function () {
     gulp.src('node_modules/getmdl-select/getmdl-select.min.css')
-    .pipe(gulp.dest('./build/public/assets/css'))
+        .pipe(gulp.dest('./build/public/assets/css'))
 })
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     livereload.listen();
     gulp.watch('public/js/*.js', ['js']);
     gulp.watch('public/*.html', ['html']);
