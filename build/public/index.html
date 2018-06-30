@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Currency Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./assets/css/getmdl-select.min.css">
+</head>
+
+
+<body>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col mdl-grid">
+            <div class="mdl-cell--3-offset"></div>
+            <div class="mdl-grid mdl-cell mdl-cell--6-col">
+                <h1 class="mdl-cell mdl-cell--12-col mdl-cell--middle">Currency Converter</h1>
+                <div class="mdl-grid mdl-cell mdl-cell--6-col container">
+                    <!-- <p class="mdl-cell mdl-cell--6-col mdl-cell--middle">From :</p> -->
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height mdl-cell--middle">
+                        <input type="text" value="" class="mdl-textfield__input" id="sample5" readonly>
+                        <input type="hidden" value="" name="sample5">
+                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                        <label for="sample5" class="mdl-textfield__label">From</label>
+                        <ul for="sample5" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                            <li class="item">
+                                <img src="http://www.countryflags.io/TN/flat/64.png" alt="">
+                                <p>Hello World</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mdl-grid mdl-cell mdl-cell--6-col container">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height mdl-cell--middle">
+                        <input type="text" value="" class="mdl-textfield__input" id="sample6" readonly>
+                        <input type="hidden" value="" name="sample6">
+                        <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                        <label for="sample6" class="mdl-textfield__label">To: </label>
+                        <ul for="sample6" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="./assets/js/getmdl-select.min.js"></script>
+</body>
+
+</html>
