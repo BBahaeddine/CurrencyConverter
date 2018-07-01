@@ -12,6 +12,9 @@ h1 {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    transition-delay: 0s !important;
+    text-align: right !important;
+    font-size: 13px !important;
 }
 /* ul {
     height: 300px !important;
