@@ -23,14 +23,17 @@ function fillSelectItems() {
     // get the ul Element
     const ulFromListContainer = document.getElementById('ulFrom');
     const ulToListContainer = document.getElementById('ulTo');
+    const loadingSpinner = document.getElementById('loadingSpinner');
     const fromInput = document.getElementById('fromInput');
+    const currencyDiv = document.getElementById('currencyDiv');
     const toInput = document.getElementById('toInput');
 
     const ulListContainer = document.getElementsByTagName('ul');
 
     ulFromListContainer.onclick = event => {
         const target = getEventTarget(event);
-        alert(target.innerHTML);
+        console.log(target.innerText);
+        fromInput.value = target.innerText;
     }
 
     getAllCountries().then(resp => {
@@ -62,16 +65,13 @@ function fillSelectItems() {
             // liElem.appendChild(currency);
             const textNode = document.createTextNode(`${data.results[element].name} - ${data.results[element].currencyId}`);
             liElem.appendChild(textNode);
-            // liElem.innerHTML = `Hello World`;
-
-            // liElem.addEventListener('click', event => {
-            //     console.log(event);
-            // })
             const clonedNode = liElem.cloneNode(true);
             ulFromListContainer.appendChild(liElem);
             ulToListContainer.appendChild(clonedNode);
 
         }
+        loadingSpinner.style.visibility = 'hidden';
+        currencyDiv.style.visibility = 'visible';
     })
 }
 function getAllCountries() {
