@@ -13,13 +13,25 @@ function registerServiceWorker() {
     })
 }
 
+function getEventTarget(e) {
+    e = e || window.event;
+    return e.target || e.srcElement;
+}
+
 function fillSelectItems() {
 
     // get the ul Element
     const ulFromListContainer = document.getElementById('ulFrom');
     const ulToListContainer = document.getElementById('ulTo');
+    const fromInput = document.getElementById('fromInput');
+    const toInput = document.getElementById('toInput');
 
     const ulListContainer = document.getElementsByTagName('ul');
+
+    ulFromListContainer.onclick = event => {
+        const target = getEventTarget(event);
+        alert(target.innerHTML);
+    }
 
     getAllCountries().then(resp => {
         return resp;
@@ -30,7 +42,8 @@ function fillSelectItems() {
             const liElem = document.createElement('li');
             // Add the flex Display
             liElem.classList.add('item');
-            liElem.classList.add('mdl-menu__item'); 
+            liElem.classList.add('mdl-menu__item');
+            liElem.setAttribute('data-val', data.results[element].currencyId);
 
             // Create Image Element
             const img = document.createElement('img');
@@ -45,17 +58,19 @@ function fillSelectItems() {
             country.innerHTML = data.results[element].name;
             currency.innerHTML = data.results[element].currencyId;
             liElem.appendChild(img);
-            liElem.appendChild(country);
-            liElem.appendChild(currency);
-            // liElem.innerHTML = `${data.results[element].name} - ${data.results[element].currencyId}`;
+            // liElem.appendChild(country);
+            // liElem.appendChild(currency);
+            const textNode = document.createTextNode(`${data.results[element].name} - ${data.results[element].currencyId}`);
+            liElem.appendChild(textNode);
+            // liElem.innerHTML = `Hello World`;
 
+            // liElem.addEventListener('click', event => {
+            //     console.log(event);
+            // })
             const clonedNode = liElem.cloneNode(true);
             ulFromListContainer.appendChild(liElem);
             ulToListContainer.appendChild(clonedNode);
-            // for(let i = 0; i < ulListContainer.length; i++) {
-            //     ulListContainer.item(i).appendChild(liElem);
-            // }
-            
+
         }
     })
 }
